@@ -1,11 +1,17 @@
 {% extends "bootstrap.html" %}
 
-{% block body_class %}template-homepage{% endblock %}
-
+{% block title %}电子信息科学基础实验中心{% endblock %}
+{% block body_class %}homepage{% endblock %}
 {% block content %}
-    <h1>Welcome to your new Wagtail site!</h1>
 
-    <p>You can access the admin interface <a href="{% url 'wagtailadmin_home' %}">here</a> (make sure you have run "./manage.py createsuperuser" in the console first).</p>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">主页</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">登录</a>
+</div>
 
-    <p>If you haven't already given the documentation a read, head over to <a href="http://docs.wagtail.io/">http://docs.wagtail.io</a> to start building on Wagtail</p>
+<footer class="container">
+    <p>&copy; 北京大学电子信息科学基础实验中心 2017-2018</p>
+</footer>
 {% endblock %}
