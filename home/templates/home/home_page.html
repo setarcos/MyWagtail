@@ -4,11 +4,14 @@
 {% block body_class %}homepage{% endblock %}
 {% block content %}
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+<div class="d-flex flex-column flex-md-row align-items-start p-3 px-md-4 mb-3 border-bottom box-shadow mynav">
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">主页</a>
+        <a class="navbar-brand" href="/">
+          <img src="media/logo.png" alt="LOGO">
+        </a>
+        <a class="p-2 text-light" href="/">主页</a>
+        <a class="p-2 text-light" href="search/">搜索</a>
     </nav>
-    <a class="btn btn-outline-primary" href="#">登录</a>
 </div>
 
 <footer class="container">
