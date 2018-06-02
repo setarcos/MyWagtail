@@ -2,3 +2,7 @@
   background-image: url("/media/header.jpg");
   min-height: 100px;
 }
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
