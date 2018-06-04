@@ -1,13 +1,13 @@
 {% extends "bootstrap.html" %}
 
-{% block title %}电子信息科学基础实验中心{% block subtitle %}{% endblock %}{% endblock %}
+{% block title %}电子信息科学基础实验中心-{% block subtitle %}{% endblock %}{% endblock %}
 {% block body_class %}homepage{% endblock %}
 {% block content %}
 
 <div class="d-flex flex-column flex-md-row align-items-start p-3 px-md-4 mb-3 border-bottom box-shadow bg-dark mynav">
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="navbar-brand" href="/">
-          <img src="media/logo.png" alt="LOGO">
+          <img src="/media/logo.png" alt="LOGO">
         </a>
         <a class="p-2 text-light" href="/">主页</a>
         <a class="p-2 text-light" href="search/">搜索</a>
@@ -15,11 +15,11 @@
 </div>
 <div class="py-1 mb-2 border-bottom box-shadow">
   <nav class="nav nav-pills d-flex justify-content-between">
-    <a class="p-2 text-muted" href="#">中心首页</a>
+    <a class="p-2 text-muted" href="/">中心首页</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">中心简介</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">中心概况</a>
+          <a class="dropdown-item" href="/intro/">中心概况</a>
           <a class="dropdown-item" href="#">组织结构</a>
           <a class="dropdown-item" href="#">教学队伍</a>
           <a class="dropdown-item" href="#">成果展示</a>
