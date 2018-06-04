@@ -35,8 +35,18 @@
     <a class="p-2 text-muted" href="#">联系我们</a>
   </nav>
 </div>
-{% block mainblk %}
-{% endblock %}
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      {% block sidebar %}
+      {% endblock %}
+    </div>
+    <div class="col-md-9 mainblk">
+      {% block mainblk %}
+      {% endblock %}
+    </div>
+  </div>
+</main>
 <footer class="container">
     <p>&copy; 北京大学电子信息科学基础实验中心 2017-2018</p>
 </footer>

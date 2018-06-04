@@ -6,3 +6,16 @@
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
+
+.mainblk b{
+  font-size: 16px;
+  color: #14117e;
+}
+
+.mainblk p{
+  text-indent: 32px;
+}
+
+.mainblk h1{
+  text-align: center;
+}
