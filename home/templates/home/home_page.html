@@ -1,20 +1,7 @@
-{% extends "bootstrap.html" %}
+{% extends "nav.html" %}
 
-{% block title %}电子信息科学基础实验中心{% endblock %}
+{% block subtitle %}主页{% endblock %}
 {% block body_class %}homepage{% endblock %}
-{% block content %}
-
-<div class="d-flex flex-column flex-md-row align-items-start p-3 px-md-4 mb-3 border-bottom box-shadow bg-dark mynav">
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="navbar-brand" href="/">
-          <img src="media/logo.png" alt="LOGO">
-        </a>
-        <a class="p-2 text-light" href="/">主页</a>
-        <a class="p-2 text-light" href="search/">搜索</a>
-    </nav>
-</div>
-
-<footer class="container">
-    <p>&copy; 北京大学电子信息科学基础实验中心 2017-2018</p>
-</footer>
+{% block mainblk %}
+主页
 {% endblock %}
