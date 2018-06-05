@@ -7,10 +7,9 @@
 {% block mainblk %}
     <h1>{{ page.title }}</h1>
     {{ page.body|richtext }}
-{% endblock %}
 
-{% block sidebar %}
-    {% for post in page.get_parent.get_children %}
-      <li><a href="{% pageurl post %}">{{ post.title }}</a></li>
+    {% for post in page.get_children %}
+        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
     {% endfor %}
+
 {% endblock %}

@@ -5,6 +5,12 @@ from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.search import index
 
+class ArticleIndexPage(Page):
+    intro = RichTextField(blank=True)
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full"),
+    ]
+
 class ArticlePage(Page):
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
