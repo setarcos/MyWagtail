@@ -11,6 +11,9 @@ class ArticleIndexPage(Page):
         FieldPanel('intro', classname="full"),
     ]
 
+    class Meta:
+        verbose_name = "文章列表"
+
 class ArticlePage(Page):
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
@@ -23,3 +26,6 @@ class ArticlePage(Page):
         FieldPanel('date'),
         FieldPanel('body', classname="full"),
     ]
+
+    class Meta:
+        verbose_name = "一般文章"
