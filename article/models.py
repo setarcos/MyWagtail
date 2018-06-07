@@ -7,6 +7,7 @@ from wagtail.search import index
 
 class ArticleIndexPage(Page):
     intro = RichTextField(blank=True)
+
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
     ]

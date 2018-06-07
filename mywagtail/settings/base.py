@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     'bootstrap4',
     'article',
+    'course',
 ]
 
 MIDDLEWARE = [
