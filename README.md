@@ -18,3 +18,6 @@ the choices I made may not always be the best ones.
    The examples from bootstrap4 omit the jquery js file kinda
    cause a lot troubles.  It took me many hours to find why
    the dropdown menu don't work.
+
+3. Missing tables support is discouraging. I had to change
+   tables into pictures to include them into my Richtext-fields.
