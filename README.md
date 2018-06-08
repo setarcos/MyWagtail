@@ -21,3 +21,9 @@ the choices I made may not always be the best ones.
 
 3. Missing tables support is discouraging. I had to change
    tables into pictures to include them into my Richtext-fields.
+
+4. The default slug is constructed by the page's title, which
+   is not cool when my page is in Chinese.  So I just redefined
+   clean function to use a timestamp as the slug.  This will
+   be fine since the odds of two pages are created at the same
+   time is small.
