@@ -36,6 +36,7 @@
   </nav>
 </div>
 <main role="main" class="container">
+  {% block jumbo %}
   <div class="row jumbotron p-3 p-md-5 text-dark rounded bg-white">
     <div class="col-md-3 sidebar">
       {% block sidebar %}
@@ -46,6 +47,7 @@
       {% endblock %}
     </div>
   </div>
+  {% endblock %}
 </main>
 <footer class="card-footer text-muted text-center">
     <p>&copy; 北京大学电子信息科学基础实验中心 2017-2018</p>
