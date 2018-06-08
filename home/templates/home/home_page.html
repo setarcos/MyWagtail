@@ -1,7 +1,40 @@
 {% extends "nav.html" %}
 
+{% load wagtailcore_tags wagtailimages_tags %}
+
 {% block subtitle %}主页{% endblock %}
 {% block body_class %}homepage{% endblock %}
 {% block mainblk %}
-主页
+<div id="carouselid" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {% for item in page.gallery_images.all %}
+      {% if forloop.counter == 1 %}
+        <li data-target="#carouselid" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+      {% else %}
+        <li data-target="#carouselid" data-slide-to="{{ forloop.counter0 }}"<li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for item in page.gallery_images.all %}
+      {% if forloop.counter == 1 %}
+          <div class="carousel-item active">
+      {% else %}
+          <div class="carousel-item">
+      {% endif %}
+          <a href={{ item.url }}>
+              {% image item.image fill-800x400 %}
+          </a>
+          </div>
+    {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselid" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselid" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 {% endblock %}
