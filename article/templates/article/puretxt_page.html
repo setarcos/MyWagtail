@@ -1,0 +1,16 @@
+{% extends "nav.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block subtitle %}{{ page.title }}{% endblock %}
+{% block body_class %}article{% endblock %}
+{% block mainblk %}
+    <h1>{{ page.title }}</h1>
+    {{ page.body|richtext }}
+{% endblock %}
+
+{% block sidebar %}
+    {% for post in page.get_siblings %}
+      <li><a href="{% pageurl post %}">{{ post.title }}</a></li>
+    {% endfor %}
+{% endblock %}

@@ -16,7 +16,6 @@ class ArticleIndexPage(Page):
         verbose_name = "文章列表"
 
 class ArticlePage(Page):
-    date = models.DateField("Post date")
     body = RichTextField(blank=True)
 
     search_fields = Page.search_fields + [
@@ -24,9 +23,22 @@ class ArticlePage(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('date'),
         FieldPanel('body', classname="full"),
     ]
 
     class Meta:
         verbose_name = "一般文章"
+
+class PuretxtPage(Page):
+    body = models.TextField(blank=True)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+    ]
+
+    class Meta:
+        verbose_name = "纯文本文章"
