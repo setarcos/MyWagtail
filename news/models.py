@@ -23,6 +23,8 @@ class NewsPage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+    promote_panels = []
+
     def clean(self):
         super().clean()
         ts_slug = time.time() - 1514736000 # datetime(2018,1,1,0,0,0)
