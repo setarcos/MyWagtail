@@ -4,6 +4,13 @@
 
 {% block subtitle %}主页{% endblock %}
 {% block body_class %}homepage{% endblock %}
+
+{% block sidebar %}
+  新闻列表<br>
+  {% for m in newspage %}
+     <li> <a href="{% pageurl m %}">{{ m.title }}</a> </li>
+  {% endfor %}
+{% endblock %}
 {% block mainblk %}
 <div id="carouselid" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
