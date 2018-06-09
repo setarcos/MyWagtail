@@ -36,5 +36,10 @@ class CoursePage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+    def clean(self):
+        super().clean()
+        self.slug = self.number
+
+
     class Meta:
         verbose_name = "课程"
