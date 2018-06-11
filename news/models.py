@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
@@ -7,6 +8,25 @@ from wagtail.search import index
 import time
 
 class NewsIndexPage(Page):
+    def get_context(self, request):
+        context = super(NewsIndexPage, self).get_context(request)
+
+        allnews = NewsPage.objects.child_of(self);
+        # I cant' use self.get_children().live().order_by because date is not a page field.
+        allpages = allnews.live().order_by('-date')
+        paginator = Paginator(allpages, 10) # Show 10 resources per page
+        page = request.GET.get('page')
+        try:
+            newspages = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            newspages = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            newspages = paginator.page(paginator.num_pages)
+        context['newspages'] = newspages
+        return context
+
     class Meta:
         verbose_name = "新闻通知列表"
 
