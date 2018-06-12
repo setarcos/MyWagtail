@@ -7,6 +7,7 @@
 {% block mainblk %}
 
 <h1>{{ page.title }}</h1>
+{% if newspages.num_pages > 1 %}
 <ul class="pagination">
     <li class="prev page-item{% if not newspages.has_previous %} disabled{% endif %}">
         <a class="page-link" href="{% if not newspages.has_previous %}#{% else %}?page=1{% endif %}">&laquo;</a>
@@ -15,9 +16,11 @@
         <a class="page-link" href="{% if not newspages.has_previous %}#{% else %}?page={{ newspages.previous_page_number }}{% endif %}">前一页</a>
     </li>
     {% for p in newspages.paginator.page_range %}
+    {% if p > newspages.number|add:'-3' and p < newspages.number|add:'3' %}
       <li class="page-item{% if newspages.number == p %} active{% endif %}">
           <a class="page-link" href="{% if newspages.number == p %}#{% else %}?page={{ p }}{% endif %}">{{ p }}</a>
       </li>
+    {% endif %}
     {% endfor %}
     <li class="last page-item{% if not newspages.has_next %} disabled{%endif %}">
         <a class="page-link" href="{% if not newspages.has_next %}#{% else %}?page={{ newspages.next_page_number }}{%endif %}">后一页</a>
@@ -26,7 +29,7 @@
         <a class="page-link" href="{% if not newspages.has_next %}#{% else %}?page={{ newspages.num_pages }}{%endif %}">&raquo;</a>
     </li>
 </ul>
-
+{% endif %}
 {% for post in newspages.object_list %}
     <li><a href="{% pageurl post %}">{{ post.title }}[{{ post.specific.date }}]</a></li>
 {% endfor %}

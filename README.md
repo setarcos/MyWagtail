@@ -27,3 +27,7 @@ the choices I made may not always be the best ones.
    clean function to use a timestamp as the slug.  This will
    be fine since the odds of two pages are created at the same
    time is small.
+
+5. Paginator in django is easy to use.  However, when there
+   is too many pages, the navigator seems crowed.  Thanks to
+   an answer in [stackoverflow](https://stackoverflow.com/questions/30864011/display-only-some-of-the-page-numbers-by-django-pagination), a one-liner in template solves this problem.
