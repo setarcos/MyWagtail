@@ -42,7 +42,7 @@ class CoursePage(Page):
     promote_panels = []
 
     parent_page_types = ['CourseIndexPage']
-    subpage_types = ['news.NewsPage']
+    subpage_types = ['news.NewsIndexPage']
 
     def clean(self):
         super().clean()
