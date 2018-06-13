@@ -12,6 +12,8 @@ class HomePage(Page):
         InlinePanel('gallery_images', label="首页图片"),
     ]
 
+    parent_page_types = []
+
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
         context['newspage'] = NewsPage.objects.live().order_by("-date")[:10]

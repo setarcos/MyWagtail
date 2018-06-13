@@ -6,6 +6,9 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.search import index
 
 class CourseIndexPage(Page):
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['CoursePage']
+
     class Meta:
         verbose_name = "课程列表"
 
@@ -36,10 +39,14 @@ class CoursePage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+    promote_panels = []
+
+    parent_page_types = ['CourseIndexPage']
+    subpage_types = ['news.NewsPage']
+
     def clean(self):
         super().clean()
         self.slug = self.number
-
 
     class Meta:
         verbose_name = "课程"

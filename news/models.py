@@ -27,6 +27,9 @@ class NewsIndexPage(Page):
         context['newspages'] = newspages
         return context
 
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['NewsPage']
+
     class Meta:
         verbose_name = "新闻通知列表"
 
@@ -44,6 +47,9 @@ class NewsPage(Page):
     ]
 
     promote_panels = []
+
+    parent_page_types = ['NewsIndexPage', 'course.CoursePage']
+    subpage_types = [] # no subpage allowed
 
     def clean(self):
         super().clean()

@@ -12,6 +12,9 @@ class ArticleIndexPage(Page):
         FieldPanel('intro', classname="full"),
     ]
 
+    parent_page_types = ['home.HomePage', 'ArticlePage']
+    subpage_types = ['ArticlePage', 'PuretxtPage']
+
     class Meta:
         verbose_name = "文章列表"
 
@@ -26,6 +29,9 @@ class ArticlePage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+    parent_page_types = ['ArticleIndexPage', 'ArticlePage']
+    subpage_types = ['ArticlePage', 'PuretxtPage']
+
     class Meta:
         verbose_name = "一般文章"
 
@@ -39,6 +45,9 @@ class PuretxtPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
     ]
+
+    parent_page_types = ['ArticleIndexPage', 'ArticlePage']
+    subpage_types = ['ArticlePage', 'PuretxtPage']
 
     class Meta:
         verbose_name = "纯文本文章"

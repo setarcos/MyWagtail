@@ -9,6 +9,9 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 import time
 
 class BookIndexPage(Page):
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['BookPage']
+
     class Meta:
         verbose_name = "书籍目录"
 
@@ -38,6 +41,9 @@ class BookPage(Page):
         FieldPanel('content', classname="full"),
         ImageChooserPanel('cover'),
     ]
+
+    parent_page_types = ['BookIndexPage']
+    subpage_types = []
 
     def clean(self):
         super().clean()
