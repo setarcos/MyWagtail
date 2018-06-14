@@ -14,6 +14,12 @@
       <div class="card-body">
         {{ page.body|richtext }}
       </div>
+      <div class="card-footer">
+          <h6 class="text-left text-muted"> 附件列表：</h6>
+        {% for item in page.news_attach.all %}
+            <a href="{{ item.attach.url }}">{{ item.attach.title}}</a><br /><br />
+        {% endfor %}
+      </div>
   </div>
 </div>
 {% endblock %}

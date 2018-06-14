@@ -1,3 +1,5 @@
 *.sqlite3
 __pycache__
 media
+*/migrations/00??*.py
+s

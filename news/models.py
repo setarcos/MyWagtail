@@ -1,9 +1,12 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.documents.models import Document
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
 import time
 
@@ -44,6 +47,7 @@ class NewsPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('body', classname="full"),
+        InlinePanel('news_attach', label="新闻附件"),
     ]
 
     promote_panels = []
@@ -59,3 +63,13 @@ class NewsPage(Page):
 
     class Meta:
         verbose_name = "新闻通知"
+
+class NewsPageAttach(Orderable):
+    page = ParentalKey(NewsPage, on_delete=models.CASCADE, related_name='news_attach')
+    attach = models.ForeignKey(
+        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+'
+    )
+
+    panels = [
+        DocumentChooserPanel('attach'),
+    ]
