@@ -9,6 +9,7 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
 import time
+import datetime
 
 class NewsIndexPage(Page):
     def get_context(self, request):
@@ -37,7 +38,7 @@ class NewsIndexPage(Page):
         verbose_name = "新闻通知列表"
 
 class NewsPage(Page):
-    date = models.DateField(verbose_name="发布日期")
+    date = models.DateField(default=datetime.date.today, verbose_name="发布日期")
     body = RichTextField(blank=True, verbose_name="正文")
 
     search_fields = Page.search_fields + [
