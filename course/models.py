@@ -1,8 +1,10 @@
 from django.db import models
 
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, TabbedInterface, ObjectList
+from modelcluster.fields import ParentalKey
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.search import index
 
 class CourseIndexPage(Page):
@@ -39,7 +41,16 @@ class CoursePage(Page):
         FieldPanel('body', classname="full"),
     ]
 
-    promote_panels = []
+    course_panels = [
+        InlinePanel('handouts', label="讲义资料"),
+        InlinePanel('slice', label="时段信息"),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading="基本信息"),
+        ObjectList(course_panels, heading="讲义与时段信息"),
+        ObjectList(Page.settings_panels, heading="设置", classname="settings"),
+    ])
 
     parent_page_types = ['CourseIndexPage']
     subpage_types = ['news.NewsIndexPage']
@@ -50,3 +61,24 @@ class CoursePage(Page):
 
     class Meta:
         verbose_name = "课程"
+
+class CourseHandout(Orderable):
+    page = ParentalKey(CoursePage, on_delete=models.CASCADE, related_name='handouts')
+    handout = models.ForeignKey(
+        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+',
+        verbose_name="讲义资料",
+    )
+
+    panels = [
+        DocumentChooserPanel('handout'),
+    ]
+
+class CourseSlice(Orderable):
+    page = ParentalKey(CoursePage, on_delete=models.CASCADE, related_name='slice')
+    info = models.CharField(max_length=40, verbose_name="时段描述")
+    limit = models.IntegerField(default=0, verbose_name="人数上限")
+
+    panels = [
+        FieldPanel('info'),
+        FieldPanel('limit'),
+    ]

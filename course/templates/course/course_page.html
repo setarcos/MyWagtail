@@ -5,21 +5,41 @@
 {% block subtitle %}{{ page.title }}{% endblock %}
 {% block body_class %}article{% endblock %}
 {% block mainblk %}
-<div class="text-center">
-<h4> 课程基本情况 </h4>
+<h4 class="text-center">{{ page.title }}</h4>
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" href="#aaa" data-toggle="tab">课程基本情况</a></li>
+    <li class="nav-item"><a class="nav-link" href="#bbb" data-toggle="tab">讲义资料</a></li>
+    <li class="nav-item"><a class="nav-link" href="#ccc" data-toggle="tab">实验时段信息</a></li>
+</ul>
+<div class="tab-content" id="tabs">
+    <div class="tab-pane active" id="aaa">
+      <table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
+         <tr><th width="15%">课程名称：</th><td width="80%">{{ page.name }}</td></tr>
+         <tr><th>英文名称：</th><td>{{ page.ename }} </td></tr>
+         <tr><th>课程编号：</th><td>{{ page.number }}</td></tr>
+         <tr><th>主讲教师：</th><td>{{ page.teacher }}</td></tr>
+         <tr><th>学分：</th><td>{{ page.unit }}</td></tr>
+         <tr><th>学时：</th><td>{{ page.hours }}</td></tr>
+         <tr><th>开课学期：</th><td> {{ page.terms }} </td></tr>
+         <tr><th>课程大纲：</th><td>
+        {{ page.body|richtext }}
+        </td></tr>
+      </table>
+    </div>
+    <div class="tab-pane" id="bbb">
+        {% for item in page.handouts.all %}
+            <a href="{{ item.handout.url }}">{{ item.handout.title}}</a><br><br>
+        {% endfor %}
+    </div>
+    <div class="tab-pane" id="ccc">
+        {% for item in page.slice.all %}
+            时段：{{ item.info }}，人数：{{ item.limit }} <br>
+        {% endfor %}
+    </div>
 </div>
-<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
-     <tr><th width="15%">课程名称：</th><td width="80%">{{ page.name }}</td></tr>
-     <tr><th>英文名称：</th><td>{{ page.ename }} </td></tr>
-     <tr><th>课程编号：</th><td>{{ page.number }}</td></tr>
-     <tr><th>主讲教师：</th><td>{{ page.teacher }}</td></tr>
-     <tr><th>学分：</th><td>{{ page.unit }}</td></tr>
-     <tr><th>学时：</th><td>{{ page.hours }}</td></tr>
-     <tr><th>开课学期：</th><td> {{ page.terms }} </td></tr>
-     <tr><th>课程大纲：</th><td>
-    {{ page.body|richtext }}
-	</td></tr>
-</table>
+<script>
+function activaTab(tab){ $('.nav-tabs a[href="#' + tab + '"]').tab('show'); };
+</script>
 {% endblock %}
 
 {% block sidebar %}
