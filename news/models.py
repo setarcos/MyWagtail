@@ -37,8 +37,8 @@ class NewsIndexPage(Page):
         verbose_name = "新闻通知列表"
 
 class NewsPage(Page):
-    date = models.DateField("Post date")
-    body = RichTextField(blank=True)
+    date = models.DateField(verbose_name="发布日期")
+    body = RichTextField(blank=True, verbose_name="正文")
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
@@ -67,7 +67,8 @@ class NewsPage(Page):
 class NewsPageAttach(Orderable):
     page = ParentalKey(NewsPage, on_delete=models.CASCADE, related_name='news_attach')
     attach = models.ForeignKey(
-        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+'
+        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+',
+        verbose_name="附件",
     )
 
     panels = [
