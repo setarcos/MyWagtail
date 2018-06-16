@@ -40,7 +40,23 @@
 {% endblock %}
 
 {% block sidebar %}
+  <div class="card-header text-center">
+     课程通知
+  </div>
+  <div class="card-body">
+      {% for post in page.get_children.first.get_children.live.specific|dictsortreversed:"date"|slice:":5" %}
+        <li><a href="{% pageurl post %}">{{ post.title }}</a></li>
+    {% endfor %}
+    {% if page.get_children.live.first.get_children.live.count > 5 %}
+        <a href="{% pageurl page.get_children.live.first %}">更多通知</a>
+    {% endif %}
+  </div>
+  <div class="card-header text-center">
+      全部课程
+  </div>
+  <div class="card-body">
     {% for post in page.get_siblings %}
       <li><a href="{% pageurl post %}">{{ post.title }}</a></li>
     {% endfor %}
+  </div>
 {% endblock %}
