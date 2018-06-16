@@ -1,0 +1,18 @@
+{% extends "nav.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block subtitle %}成员列表{% endblock %}
+{% block body_class %}article{% endblock %}
+{% block mainblk %}
+    {% for err in errors %}
+    <div class="alert alert-danger" role="alert">`
+        <h4>{{ err }}</h4>
+    </div>
+    {% endfor %}
+    <h4 class="text-center">本时段成员列表</h4>
+    {% for member in members %}
+      {{ member.name }} , {{ member.number }} <br>
+    {% endfor %}
+
+{% endblock %}

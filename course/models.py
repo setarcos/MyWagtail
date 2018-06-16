@@ -43,7 +43,7 @@ class CoursePage(Page):
 
     course_panels = [
         InlinePanel('handouts', label="讲义资料"),
-        InlinePanel('slice', label="时段信息"),
+        InlinePanel('group', label="时段信息"),
     ]
 
     edit_handler = TabbedInterface([
@@ -73,12 +73,23 @@ class CourseHandout(Orderable):
         DocumentChooserPanel('handout'),
     ]
 
-class CourseSlice(Orderable):
-    page = ParentalKey(CoursePage, on_delete=models.CASCADE, related_name='slice')
+class CourseGroup(Orderable):
+    page = ParentalKey(CoursePage, on_delete=models.CASCADE, related_name='group')
     info = models.CharField(max_length=40, verbose_name="时段描述")
     limit = models.IntegerField(default=0, verbose_name="人数上限")
 
     panels = [
         FieldPanel('info'),
         FieldPanel('limit'),
+      #  InlinePanel('member'),
+    ]
+
+class GroupMember(models.Model):
+    group = models.ForeignKey(CourseGroup, on_delete=models.CASCADE, related_name='member')
+    number = models.CharField(max_length=15, verbose_name="学号")
+    name = models.CharField(max_length=40, verbose_name="姓名")
+
+    panels = [
+        FieldPanel('number'),
+        FieldPanel('name'),
     ]
