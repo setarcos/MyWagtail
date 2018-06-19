@@ -8,6 +8,14 @@ class MeetingRoom(models.Model):
         verbose_name="会议室"
         verbose_name_plural="会议室"
 
+    def get_agenda(self):
+        return self.agenda.all()
+
+    # to check if the agenda is without conflict
+    def isOK(self, day, start, end):
+        return True
+
+
 class RoomAgenda(models.Model):
     room = models.ForeignKey(MeetingRoom, on_delete=models.CASCADE, related_name='agenda')
     title = models.CharField(max_length=200)
