@@ -4,16 +4,14 @@
 
 {% bootstrap_messages %}
 
-{% block subtitle %}日程列表{% endblock %}
+{% block subtitle %}日程详情{% endblock %}
 {% block body_class %}agenda{% endblock %}
 {% block mainblk %}
 <div class="row">
   <div class="col-md-8">
       <table class="agenda">
-          <tr><th>事项</th><th>日期</th></tr>
-            {% for agenda in agendas %}
-              <tr><td> {{ agenda.title }} </td><td> {{ agenda.strdate }} </td></tr>
-            {% endfor %}
+          <tr><th>事项</th><td> {{ agenda.title }} </td></tr>
+          <tr><th>日期</th><td> {{ agenda.strdate }} </td></tr>
       </table>
   </div>
 </div>

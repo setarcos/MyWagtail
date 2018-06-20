@@ -13,7 +13,7 @@ class AgendaForm(forms.Form):
 
     date = forms.DateField(
         required=False,
-        label="日期(固定日期的时间或者每周重复的截止时间)",
+        label="日期",
         initial=datetime.date.today,
         widget=forms.SelectDateWidget,
     )
