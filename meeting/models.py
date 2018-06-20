@@ -21,8 +21,8 @@ class RoomAgenda(models.Model):
     title = models.CharField(max_length=200)
     username = models.CharField(max_length=40)
     date = models.IntegerField(default=0)
-    start_time = models.TimeField(default=0)
-    end_time = models.TimeField(default=0)
+    start_time = models.TimeField(default='00:00')
+    end_time = models.TimeField(default='00:00')
 
     def strdate(self):
         return '{0}年{1}月{2}日'.format(int(self.date / 10000), int(self.date % 10000 / 100), self.date % 100)

@@ -9,7 +9,7 @@
 {% block mainblk %}
 <div class="row">
   <div class="col-md-8">
-      <table class="agenda">
+      <table class="table table-bordered table-hover table-sm">
           <tr><th>事项</th><th>日期</th></tr>
             {% for agenda in agendas %}
               <tr><td> {{ agenda.title }} </td><td> {{ agenda.strdate }} </td></tr>
