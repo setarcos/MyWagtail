@@ -22,11 +22,13 @@ def agenda_add(request, room_id):
             agenda.start_time = form.cleaned_data['start']
             agenda.end_time = form.cleaned_data['end']
             agenda.username = '123'
-            if form.cleaned_data['repeatable'] == 1:
-                agenda.date = 0 - form.cleaned_data['week']
+            agenda.week = form.cleaned_data['week']
+            agenda.date = form.cleaned_data['date']
+            if form.cleaned_data['repeatable'] == 2:
+                agenda.repeat = 1
             else:
-                date = form.cleaned_data['date']
-                agenda.date = date.year * 10000 + date.month * 100 + date.day
+                agenda.repeat = 0
+                agenda.week = agenda.date.weekday() # make sure the week is right
             agenda.save()
             return HttpResponseRedirect(reverse('meeting:agenda_list', args=(room.id,)))
     else:

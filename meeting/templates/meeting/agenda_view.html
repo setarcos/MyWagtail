@@ -9,9 +9,12 @@
 {% block mainblk %}
 <div class="row">
   <div class="col-md-8">
-      <table class="agenda">
+      <table class="table table-bordered table-sm">
           <tr><th>事项</th><td> {{ agenda.title }} </td></tr>
-          <tr><th>日期</th><td> {{ agenda.strdate }} </td></tr>
+          <tr><th>类型</th><td> {% if agenda.repeat == 1 %} 每周重复 {% else %} 固定日期 {% endif %}
+          <tr><th>{% if agenda.repeat == 1 %}截止{% endif %}日期</th><td> {{ agenda.date }} </td></tr>
+          <tr><th>开始时间</th><td> {{ agenda.start_time }} </td>
+          <tr><th>结束时间</th><td> {{ agenda.end_time}} </td>
       </table>
   </div>
 </div>

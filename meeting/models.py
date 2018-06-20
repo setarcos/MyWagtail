@@ -20,9 +20,8 @@ class RoomAgenda(models.Model):
     room = models.ForeignKey(MeetingRoom, on_delete=models.CASCADE, related_name='agenda')
     title = models.CharField(max_length=200)
     username = models.CharField(max_length=40)
-    date = models.IntegerField(default=0)
+    repeat = models.IntegerField(default=0)
+    date = models.DateField(default='2018-01-01')
+    week = models.IntegerField(default=-1)
     start_time = models.TimeField(default='00:00')
     end_time = models.TimeField(default='00:00')
-
-    def strdate(self):
-        return '{0}年{1}月{2}日'.format(int(self.date / 10000), int(self.date % 10000 / 100), self.date % 100)
