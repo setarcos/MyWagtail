@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from .models import MeetingRoom, RoomAgenda
 from .forms import AgendaForm
 from django.urls import reverse
+import datetime
 
 def index(request):
     rooms = MeetingRoom.objects.all()
@@ -14,6 +15,7 @@ def index(request):
 
 def agenda_add(request, room_id):
     room = get_object_or_404(MeetingRoom, pk=room_id)
+    errors = []
     if request.method == 'POST':
         form = AgendaForm(request.POST)
         if form.is_valid():
@@ -24,21 +26,27 @@ def agenda_add(request, room_id):
             agenda.username = '123'
             agenda.week = form.cleaned_data['week']
             agenda.date = form.cleaned_data['date']
-            if form.cleaned_data['repeatable'] == 2:
+            if form.cleaned_data['repeatable'] == '2':
                 agenda.repeat = 1
             else:
                 agenda.repeat = 0
                 agenda.week = agenda.date.weekday() # make sure the week is right
-            agenda.save()
-            return HttpResponseRedirect(reverse('meeting:agenda_list', args=(room.id,)))
+            if agenda.collide():
+                errors=["与其它日程存在冲突，请检查"]
+            if agenda.repeat == 1:
+                if (agenda.date - datetime.date.today()).days < 7:
+                    errors = errors + ["每周重复日程请设定合适的截止日期"]
+            if len(errors) == 0:
+                agenda.save()
+                return HttpResponseRedirect(reverse('meeting:agenda_list', args=(room.id,)))
     else:
         form = AgendaForm()
-    return render(request, 'meeting/agenda_add.html', {'form': form})
+    return render(request, 'meeting/agenda_add.html', {'form': form, 'errors':errors})
 
 def agenda_list(request, room_id):
     room = get_object_or_404(MeetingRoom, pk=room_id)
     agendas = RoomAgenda.objects.filter(room=room)
-    return render(request, 'meeting/agenda_list.html', {'agendas': agendas})
+    return render(request, 'meeting/agenda_list.html', {'agendas': agendas, 'room_id': room_id})
 
 def agenda_view(request, agenda_id):
     agenda = get_object_or_404(RoomAgenda, pk=agenda_id)

@@ -21,8 +21,8 @@ class AgendaForm(forms.Form):
     week = forms.ChoiceField(
         required=False,
         label="星期",
-        choices=((1, "周一"), (2, "周二"), (3, "周三"), (4, "周四"),
-            (5, "周五"), (6, "周六"), (7, "周日")),
+        choices=((0, "周一"), (1, "周二"), (2, "周三"), (3, "周四"),
+            (4, "周五"), (5, "周六"), (6, "周日")),
     )
 
     start = forms.TimeField(
