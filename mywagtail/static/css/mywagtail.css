@@ -32,3 +32,19 @@
 	background-color:#D7EBFF;
 	font-weight: normal;
 }
+
+div.calendar {
+    background-color: #DFDF00;
+    border-radius: 5px;
+    width: 80px;
+    text-align: center;
+}
+
+td.cal-header {
+    background-color: #CFCFCF;
+    width: 80px;
+}
+
+th.cal-row{
+    height: 40px;
+}

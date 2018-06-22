@@ -7,7 +7,12 @@
 {% block subtitle %}日程列表{% endblock %}
 {% block body_class %}agenda{% endblock %}
 {% block mainblk %}
-<div class="row">
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" href="#aaa" data-toggle="tab">日程表</a></li>
+    <li class="nav-item"><a class="nav-link" href="#bbb" data-toggle="tab">日程详细列表</a></li>
+</ul>
+<div class="tab-content" id="tabs">
+  <div class="tab-pane" id="bbb">
   <div class="col-md-8">
       <table class="table table-bordered table-hover table-sm">
           <tr><th>事项</th><th>日期</th><th>操作</th></tr>
@@ -28,6 +33,44 @@
               </tr>
             {% endfor %}
       </table>
+  </div>
+  </div>
+  <div class="tab-pane active" id="aaa">
+  <div class="container p-0" style="position: relative;min-height:500px">
+    <table class="table-sm table-bordered">
+        <tr><th style="width:50px"></th><td class="cal-header">周一</td>
+            <td class="cal-header">周二</td>
+            <td class="cal-header">周三</td>
+            <td class="cal-header">周四</td>
+            <td class="cal-header">周五</td>
+            <td class="cal-header">周六</td>
+            <td class="cal-header">周日</td></tr>
+        <tr><th class="cal-row">06:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">07:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">08:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">09:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">10:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">11:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">12:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">13:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">14:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">15:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">16:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">17:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">18:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">19:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">20:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">21:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">22:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">23:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th class="cal-row">24:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    {% for agenda in agendas %}
+    <div class="calendar" style="position: absolute;{{ agenda.view }}">
+        <a href="{% url 'meeting:agenda_view' agenda.id %}">{{agenda.title }}</a>
+    </div>
+    {% endfor %}
+  </div>
   </div>
 </div>
 {% endblock %}

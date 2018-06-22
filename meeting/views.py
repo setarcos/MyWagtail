@@ -45,7 +45,18 @@ def agenda_add(request, room_id):
 
 def agenda_list(request, room_id):
     room = get_object_or_404(MeetingRoom, pk=room_id)
-    agendas = RoomAgenda.objects.filter(room=room)
+    td = datetime.date.today()
+    td = td - datetime.timedelta(days=td.weekday()) # whole week
+    agendas = RoomAgenda.objects.filter(room=room,date__gte=td)
+    for a in agendas:
+        a.view = ""
+        if (a.repeat == 0) and (a.date > td + 6):
+            continue
+        a.view = a.view + "left: %dpx;" % (a.week * 80 + 50)
+        k = (a.start_time.hour - 5) * 40 + (a.start_time.minute / 6 * 4) - 5
+        a.view = a.view + "top: %dpx;" % k
+        k = (a.end_time.hour - a.start_time.hour) * 40 + (a.end_time.minute - a.start_time.minute) / 6 * 4
+        a.view = a.view + "height: %dpx;" % k
     return render(request, 'meeting/agenda_list.html', {'agendas': agendas, 'room_id': room_id})
 
 def agenda_view(request, agenda_id):
