@@ -56,6 +56,8 @@ class EquipPage(Page):
 
     def clean(self):
         super().clean()
+        if self.slug.isdigit():
+            return
         ts_slug = time.time() - 1514736000 # datetime(2018,1,1,0,0,0)
         self.slug = '%d' % ts_slug
 

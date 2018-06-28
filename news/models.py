@@ -58,6 +58,9 @@ class NewsPage(Page):
 
     def clean(self):
         super().clean()
+        # When editing a page, the slug is no need to change
+        if self.slug.isdigit():
+            return
         ts_slug = time.time() - 1514736000 # datetime(2018,1,1,0,0,0)
         # I don't care meaningful slug names here, so just use a timestamp
         self.slug = '%d' % ts_slug
