@@ -1,0 +1,17 @@
+{% extends "nav.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block subtitle %}{{ page.title }}{% endblock %}
+{% block body_class %}equip{% endblock %}
+{% block mainblk %}
+  <table class="table table-bordered table-hover table-sm">
+      <tr><th>设备名称</th><th>型号</th><th>厂家</th><th>手册</th></tr>
+    {% for equip in page.get_children.specific %}
+      <tr><td><a href="{% pageurl equip %}">{{ equip.title }}</a></td>
+          <td> {{ equip.model }}</td><td> {{ equip.madeby }}</td>
+          <td><a href="{{ equip.manual.url }}">查看</a></td></tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}
