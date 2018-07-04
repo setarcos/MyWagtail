@@ -1,18 +1,19 @@
 {% extends "bootstrap.html" %}
+{% load static %}
 
 {% block title %}电子信息科学基础实验中心-{% block subtitle %}{% endblock %}{% endblock %}
 {% block body_class %}homepage{% endblock %}
 {% block content %}
 
-<div class="d-flex flex-column flex-md-row align-items-start p-3 px-md-4 mb-0 border-bottom box-shadow bg-dark mynav">
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="navbar-brand" href="/">
-          <img src="/media/logo.png" alt="LOGO">
-        </a>
-        <a class="p-2 text-light" href="/">主页</a>
+<nav class="navbar navbar-expand-md navbar-light bg-light mynav">
+    <a class="navbar-brand" href="/">
+      <img src="/media/logo.png" alt="LOGO">
+    </a>
+    <div class="navbar-nav ml-auto">
+        <a class="p-2 text-light" href="{% static 'html/login.html' %}">登录</a>
         <a class="p-2 text-light" href="/search/">搜索</a>
-    </nav>
-</div>
+    </div>
+</nav>
 <div class="py-1 mb-2 border-bottom box-shadow">
   <nav class="nav nav-pills d-flex justify-content-between">
     <a class="p-2 text-muted" href="/">中心首页</a>
