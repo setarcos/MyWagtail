@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^group/', include(course_urls)),
     url(r'^rooms/', include(meeting_urls)),
     url(r'^auth/', user_views.auth, name='auth'),
+    url(r'^logout/', user_views.logout_view, name='logout_view'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
