@@ -36,11 +36,14 @@
           <tr><th width="60%">时段信息</th><th>人数上限</th><th>操作</th></tr>
         {% for item in page.group.all %}
         <tr><td>{{ item.info }}</td><td>{{ item.limit }}</td><td>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user.username == 'Student' %}
+              <a href="{% url 'course:joingroup' item.id %}">加入</a>
+              <a href="{% url 'course:leavegroup' item.id %}">退出</a>
             {% endif %}
             </td> </tr>
         {% endfor %}
       </table>
+
     </div>
 </div>
 {% endblock %}
