@@ -66,9 +66,11 @@
         <tr><th class="cal-row">24:00</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
     {% for agenda in agendas %}
-    <div class="calendar" style="position: absolute;{{ agenda.view }}">
-        <a href="{% url 'meeting:agenda_view' agenda.id %}">{{agenda.title }}</a>
-    </div>
+    {% if agenda.view != '' %}
+        <div class="calendar" style="position: absolute;{{ agenda.view }}">
+            <a href="{% url 'meeting:agenda_view' agenda.id %}">{{agenda.title }}</a>
+        </div>
+    {% endif %}
     {% endfor %}
   </div>
   </div>

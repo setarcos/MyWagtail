@@ -20,6 +20,7 @@ class MeetingRoom(models.Model):
 class RoomAgenda(models.Model):
     room = models.ForeignKey(MeetingRoom, on_delete=models.CASCADE, related_name='agenda')
     title = models.CharField(max_length=200)
+    userid = models.CharField(max_length=12)
     username = models.CharField(max_length=40)
     repeat = models.IntegerField(default=0)
     date = models.DateField(default='2018-01-01')

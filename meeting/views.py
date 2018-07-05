@@ -16,6 +16,8 @@ def index(request):
 def agenda_add(request, room_id):
     room = get_object_or_404(MeetingRoom, pk=room_id)
     errors = []
+    if request.user.userid != request.session['schoolid']:
+        errors = ["你没有增加日程的权限"]
     if request.method == 'POST':
         form = AgendaForm(request.POST)
         if form.is_valid():
@@ -23,16 +25,17 @@ def agenda_add(request, room_id):
             agenda.title = form.cleaned_data['note']
             agenda.start_time = form.cleaned_data['start']
             agenda.end_time = form.cleaned_data['end']
-            agenda.username = '123'
+            agenda.userid = request.session['schoolid']
             agenda.week = form.cleaned_data['week']
             agenda.date = form.cleaned_data['date']
+            agenda.username = request.session['realname']
             if form.cleaned_data['repeatable'] == '2':
                 agenda.repeat = 1
             else:
                 agenda.repeat = 0
                 agenda.week = agenda.date.weekday() # make sure the week is right
             if agenda.collide():
-                errors=["与其它日程存在冲突，请检查"]
+                errors= errors + ["与其它日程存在冲突，请检查"]
             if agenda.repeat == 1:
                 if (agenda.date - datetime.date.today()).days < 7:
                     errors = errors + ["每周重复日程请设定合适的截止日期"]
@@ -50,7 +53,7 @@ def agenda_list(request, room_id):
     agendas = RoomAgenda.objects.filter(room=room,date__gte=td)
     for a in agendas:
         a.view = ""
-        if (a.repeat == 0) and (a.date > td + 6):
+        if (a.repeat == 0) and (a.date > td + datetime.timedelta(days=6)):
             continue
         a.view = a.view + "left: %dpx;" % (a.week * 80 + 50)
         k = (a.start_time.hour - 5) * 40 + (a.start_time.minute / 6 * 4) - 5
@@ -66,5 +69,6 @@ def agenda_view(request, agenda_id):
 def agenda_del(request, agenda_id):
     agenda = get_object_or_404(RoomAgenda, pk=agenda_id)
     room = agenda.room
-    agenda.delete()
+    if (agenda.userid == request.session['schoolid']) or (request.user.is_superuser):
+        agenda.delete()
     return HttpResponseRedirect(reverse('meeting:agenda_list', args=(room.id,)))
