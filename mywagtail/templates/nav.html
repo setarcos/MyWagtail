@@ -6,9 +6,17 @@
 {% block content %}
 
 <nav class="navbar navbar-expand-md navbar-light bg-light mynav">
-    <a class="navbar-brand" href="/">
+    <div class="d-lg-none">
+        <a id="logo" class="navbar-brand" href="/">
+          <img src="/media/logo-sm.png" alt="LOGO">
+        </a>
+        <li class="p-2 navbar-text text-light">电子信息科学基础实验中心</li>
+    </div>
+    <div class="d-none d-lg-block">
+    <a id="logo" class="navbar-brand" href="/">
       <img src="/media/logo.png" alt="LOGO">
     </a>
+    </div>
     <div class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
         <li class="p-2 navbar-text text-light"> 欢迎 {{ request.session.realname }}</li>
@@ -19,7 +27,7 @@
         <a class="p-2 text-light" href="/search/">搜索</a>
     </div>
 </nav>
-<div class="py-1 mb-2 border-bottom box-shadow">
+<div class="container py-1 mb-2 border-bottom box-shadow">
   <nav class="nav nav-pills d-flex justify-content-between">
     <a class="p-2 text-muted" href="/">中心首页</a>
       <li class="nav-item dropdown">
@@ -44,7 +52,7 @@
 <main role="main" class="container">
   {% block jumbo %}
   <div class="row jumbotron p-3 p-md-5 text-dark rounded bg-white">
-    <div class="col-md-3 sidebar">
+    <div class="d-none d-lg-block col-md-3 sidebar">
       {% block sidebar %}
       {% endblock %}
     </div>
