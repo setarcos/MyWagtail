@@ -7,6 +7,9 @@
 {% block mainblk %}
 
 <h1>{{ page.title }}</h1>
+    {% if user.is_superuser %}
+    <ul class="text-right"><a class="badge badge-warning" href="{% url 'wagtailadmin_pages:add_subpage' page.id %}">新建通知</a></ul>
+    {% endif %}
 {% if newspages.num_pages > 1 %}
 <ul class="pagination">
     <li class="prev page-item{% if not newspages.has_previous %} disabled{% endif %}">

@@ -10,6 +10,11 @@
       <div class="card-header text-center">
         <h1>{{ page.title }}</h1>
         <h6 class="text-right text-muted">发布时间：{{ page.date }} </h6>
+    {% if page.owner.username == user.username %}
+       <ul class="text-right">
+       <a class="badge badge-warning" href="{% url 'wagtailadmin_pages:edit' page.id %}">修改</a>
+       </ul>
+    {% endif %}
       </div>
       <div class="card-body">
         {{ page.body|richtext }}

@@ -59,6 +59,11 @@
     {% if page.get_children.live.first.get_children.live.count > 5 %}
         <a href="{% pageurl page.get_children.live.first %}">更多通知</a>
     {% endif %}
+    {% if page.teaid == request.session.schoolid %}
+       <ul class="text-right">
+       <a class="badge badge-warning" href="{% url 'wagtailadmin_pages:add_subpage' page.get_children.first.id %}">新建通知</a>
+       </ul>
+    {% endif %}
   </div>
   <div class="card-header text-center">
       全部课程
