@@ -35,23 +35,55 @@
 <div class="container py-1 mb-2 border-bottom box-shadow">
   <nav class="nav nav-pills d-flex justify-content-between">
     <a class="p-2 text-muted" href="/">中心首页</a>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">中心简介</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">中心简介</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/intro/1/">中心概况</a>
+        <a class="dropdown-item" href="/intro/2/">组织结构</a>
+        <a class="dropdown-item" href="/intro/3/">教学队伍</a>
+        <a class="dropdown-item" href="/intro/4/">成果展示</a>
+        <a class="dropdown-item" href="/intro/5/">对外交流</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">实验教学</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/course/">课程列表</a>
+        <a class="dropdown-item" href="/intro/12/">中心实验室</a>
+        <a class="dropdown-item" href="/intro/6/">课程体系</a>
+        <a class="dropdown-item" href="/intro/7/">全部实验内容</a>
+        <a class="dropdown-item" href="/intro/8/">电类课程</a>
+        <a class="dropdown-item" href="/intro/9/">非电类课程</a>
+        <a class="dropdown-item" href="/innovations/">创新园地</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">教学资源</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="/intro/1/">中心概况</a>
-          <a class="dropdown-item" href="/intro/2/">组织结构</a>
-          <a class="dropdown-item" href="/intro/3/">教学队伍</a>
-          <a class="dropdown-item" href="/intro/4/">成果展示</a>
-          <a class="dropdown-item" href="/intro/5/">对外交流</a>
+            <a class="dropdown-item" href="/static/html/kejian/">精品课件</a>
+            <a class="dropdown-item" href="/static/html/datasheet/">元器件手册</a>
+            <a class="dropdown-item" href="/static/html/download/">常用工具下载</a>
         </div>
-      </li>
-    <a class="p-2 text-muted" href="#">实验教学</a>
-    <a class="p-2 text-muted" href="#">教学资源</a>
-    <a class="p-2 text-muted" href="#">实验室与设备</a>
-    <a class="p-2 text-muted" href="#">中心管理</a>
-    <a class="p-2 text-muted" href="#">规章制度</a>
-    <a class="p-2 text-muted" href="#">课程讨论区</a>
-    <a class="p-2 text-muted" href="#">联系我们</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">中心管理</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'meeting:index' %}">会议室预订</a>
+            <a class="dropdown-item" href="/news/">全部新闻</a>
+            <a class="dropdown-item" href="/book/">中心藏书</a>
+            <a class="dropdown-item" href="/equip/">中心设备</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">规章制度</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/rules_c/">中心规章</a>
+            <a class="dropdown-item" href="/rules_s/">院级规章</a>
+            <a class="dropdown-item" href="/rules_u/">学校规章</a>
+            <a class="dropdown-item" href="/laws/">国家法规</a>
+        </div>
+    </li>
+    <a class="p-2 text-muted" href="/intro/100/">联系我们</a>
   </nav>
 </div>
 <main role="main" class="container">
