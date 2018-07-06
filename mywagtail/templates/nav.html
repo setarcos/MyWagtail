@@ -5,18 +5,22 @@
 {% block body_class %}homepage{% endblock %}
 {% block content %}
 
-<nav class="navbar navbar-expand-md navbar-light bg-light mynav">
-    <div class="d-lg-none">
-        <a id="logo" class="navbar-brand" href="/">
-          <img src="/media/logo-sm.png" alt="LOGO">
-        </a>
-        <li class="p-2 navbar-text text-light">电子信息科学基础实验中心</li>
-    </div>
-    <div class="d-none d-lg-block">
-    <a id="logo" class="navbar-brand" href="/">
-      <img src="/media/logo.png" alt="LOGO">
-    </a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mynav">
+  <div class="d-lg-none align-top">
+      <a class="navbar-brand" href="/">
+        <img src="/media/logo-sm.png" alt="LOGO">
+      </a>
+      <h3 class="p-2 navbar-text text-light">电子信息科学<br>基础实验中心</h3>
+  </div>
+  <div class="d-none d-lg-block">
+  <a id="logo" class="navbar-brand" href="/">
+    <img src="/media/logo.png" alt="LOGO">
+  </a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
     <div class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
         <li class="p-2 navbar-text text-light"> 欢迎 {{ request.session.realname }}</li>
@@ -26,6 +30,7 @@
       {% endif %}
         <a class="p-2 text-light" href="/search/">搜索</a>
     </div>
+  </div>
 </nav>
 <div class="container py-1 mb-2 border-bottom box-shadow">
   <nav class="nav nav-pills d-flex justify-content-between">
