@@ -16,7 +16,7 @@ def index(request):
 def agenda_add(request, room_id):
     room = get_object_or_404(MeetingRoom, pk=room_id)
     errors = []
-    if request.user.userid != request.session['schoolid']:
+    if (not request.session.has_key('schoolid')) or request.user.username != request.session['schoolid']:
         errors = ["你没有增加日程的权限"]
     if request.method == 'POST':
         form = AgendaForm(request.POST)
