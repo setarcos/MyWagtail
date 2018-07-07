@@ -16,13 +16,13 @@ def auth(request):
     KEY='7028D67CD5F82F92E0530100007F7A7D'
     ip=get_client_ip(request)
     token=request.GET.get('token', '')
-    if token == 'abcd':
-        u = User.objects.filter(username='Student')
+    if (token == 'Student') or (token == 'Teacher'):
+        u = User.objects.filter(username=token)
         if u.count() == 0:
             return HttpResponseRedirect('/')
-        request.session['realname'] = '贾仗'
-        request.session['schoolid'] = '113333'
         login(request, u.first())
+        request.session['realname'] = request.GET.get('name', '贾鸣')
+        request.session['schoolid'] = request.GET.get('id', '123456')
         return HttpResponseRedirect('/')
 
     para='appId=EELABWeb&remoteAddr='+ip+'&token='+token+KEY
