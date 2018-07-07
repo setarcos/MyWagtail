@@ -11,8 +11,16 @@
     </div>
     {% endfor %}
     <h4 class="text-center">本时段成员列表</h4>
+    <table class="table-sm table-hover table-bordered" width="100%">
+     <tr><th width="10%">序号</th><th>姓名</th><th>学号</th>
     {% for member in members %}
-      {{ member.name }} , {{ member.number }} <br>
+    <tr><td> {{ forloop.counter }} <td>{{ member.name }}</td><td> {{ member.number }} </td></tr>
     {% endfor %}
+    </table>
 
+{% endblock %}
+{% block sidebar %}
+{% if group %}
+<li><a href="{% pageurl group.page %}">回到课程</a></li>
+{% endif %}
 {% endblock %}

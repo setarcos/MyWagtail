@@ -6,10 +6,15 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block sidebar %}
-  新闻列表<br>
+  <h5> 最新消息 </h5>
+  <table class="table-sm table-hover" width="100%">
   {% for m in newspage %}
-     <li> <a href="{% pageurl m %}">{{ m.title }}</a> </li>
+  <tr><td width="80%" style="text-align:left"> <a href="{% pageurl m %}">{{ m.title }}</a>
+          {% if m.depth > 4 %} <span class="badge badge-info">课</span> {% endif %}
+      </td>
+      <td style="text-align:right">{{ m.date.month }}-{{m.date.day}}</td> </tr>
   {% endfor %}
+  </table>
 {% endblock %}
 {% block mainblk %}
 <div id="carouselid" class="carousel slide" data-ride="carousel">
@@ -32,6 +37,9 @@
           <a href={{ item.url }}>
               {% image item.image fill-800x400 %}
           </a>
+          </div>
+          <div class="carousel-caption d-none d-md-block" style="text-shadow: black 0.1em 0.1em 0.1em;">
+              <h5>{{ item.caption }} </h5>
           </div>
     {% endfor %}
   </div>

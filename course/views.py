@@ -6,7 +6,10 @@ from .models import CourseGroup, GroupMember, CoursePage
 def index(request, group_id):
     group = get_object_or_404(CourseGroup, pk=group_id)
     member = GroupMember.objects.filter(group=group)
-    return render(request, 'course/group_index.html', {'members': member})
+    errors = []
+    if (member.count() > group.limit):
+        errors = ["人数已经超限，后面的学生将无法参加实验，请换时间"]
+    return render(request, 'course/group_index.html', {'members': member, 'group': group, 'errors': errors})
 
 def joingroup(request, group_id):
     if request.user.username != 'Student':
@@ -28,9 +31,12 @@ def joingroup(request, group_id):
         m.number = request.session['schoolid']
         m.save()
     member = GroupMember.objects.filter(group=group)
+    if (member.count() > group.limit):
+        errors = ["人数已经超限，请调整到其它组"]
     return render(request, 'course/group_index.html',
             {'members': member,
-             'errors': errors})
+             'errors': errors,
+             'group': group})
 
 def leavegroup(request, group_id):
     group = get_object_or_404(CourseGroup, pk=group_id)
@@ -39,4 +45,4 @@ def leavegroup(request, group_id):
         m.delete()
     member = GroupMember.objects.filter(group=group)
     return render(request, 'course/group_index.html',
-            {'members': member})
+            {'members': member, 'group': group})
